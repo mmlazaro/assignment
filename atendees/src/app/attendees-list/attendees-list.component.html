@@ -1,3 +1,4 @@
+
 <table>
     <thead>
         <tr>
@@ -19,7 +20,9 @@
             <td>{{person.dateOfBirth | date: 'd/M/yyyy'}}</td>
             <td>{{person.city}}</td>
             <td>{{person.country}}</td>
-            <td></td>
+            <td>
+                <button (click)="removeAttendee(person.id)"><img src="assets/bin.png"></button>
+            </td>
         </tr>
     </tbody>
 </table>

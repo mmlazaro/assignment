@@ -17,6 +17,9 @@ export class AttendeesListComponent implements OnInit {
   constructor(private attendeesService: AttendeesService) {}
 
   ngOnInit(): void {
+    //this.attendeesService.getAttendees();
+    this.attendeesService.loadAttendees()
+
     this.loadPage();
     this.attendeesService.getTotalPages().subscribe(count => this.lastPage = count);
   }
@@ -31,5 +34,10 @@ export class AttendeesListComponent implements OnInit {
       this.attendees = list;
       console.log(this.attendees)
     })
+  }
+
+  removeAttendee(id: string) {
+    this.attendeesService.removeAttendee(id);
+    this.loadPage();
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Attendee } from './attendee.model';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 
 @Injectable({
@@ -10,26 +10,43 @@ import { map } from 'rxjs';
 export class AttendeesService {
 
   pageSize = 10;
+  attendees: Attendee[] = []
+
+  attendees$ = new BehaviorSubject<Attendee[]>([]);
+
   constructor(private httpClient: HttpClient) { }
 
   getAttendees() {
+
     return this.httpClient.get<Attendee[]>('assets/attendees.json');
   }
 
+  loadAttendees() {
+    this.getAttendees().subscribe(list => {
+      this.attendees = list;
+      this.attendees$.next(this.attendees);
+    });
+  }
+
   getAttendeesPage(page: number) {
-    return this.getAttendees().pipe(
-      map(list => {
-        if (list.length < this.pageSize * (page)) {
-          return list.slice(this.pageSize * (page), list.length - 1);
-        } else {
-          return list.slice(this.pageSize * (page), this.pageSize * (page + 1));
-        }
-      })
-    )
+    return this.attendees$.pipe(
+        map(list => {
+          if (list.length < this.pageSize * (page)) {
+            return list.slice(this.pageSize * (page), list.length - 1);
+          } else {
+            return list.slice(this.pageSize * (page), this.pageSize * (page + 1));
+          }
+        })
+      )
+  }
+
+  removeAttendee(id: string) {
+    this.attendees = this.attendees.filter(el => el.id!== id);
+    this.attendees$.next(this.attendees);
   }
 
   getAttendeesCount() {
-    return this.getAttendees().pipe(
+    return this.attendees$.pipe(
       map(list => list.length)
     );
   }
