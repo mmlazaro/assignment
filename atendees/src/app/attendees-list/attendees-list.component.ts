@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Attendee } from '../attendee.model';
 import { AttendeesService } from '../attendees.service';
 
@@ -13,6 +14,7 @@ export class AttendeesListComponent implements OnInit {
   currentPage = 0;
   lastPage: number = 1;
   attendees: Attendee[] = [];
+  count$!: Observable<number>;
 
   constructor(private attendeesService: AttendeesService) {}
 
@@ -22,6 +24,7 @@ export class AttendeesListComponent implements OnInit {
 
     this.loadPage();
     this.attendeesService.getTotalPages().subscribe(count => this.lastPage = count);
+    this.count$ = this.attendeesService.getAttendeesCount();
   }
 
   switchPage(page: number) {
