@@ -1,16 +1,9 @@
-<!-- <button (click)="onPageChange(1)">1</button>
-
-<button *ngIf="currentPage > 1 ">{{currentPage - 1}}</button>
-<button>{{currentPage + 1}}</button>
-<button *ngIf="currentPage < lastPage">{{currentPage + 1}}</button>
-
-
-<button>{{lastPage}}</button> -->
-
-<button [disabled]="currentPage===0" (click)="onPageChange(currentPage-1)"><</button>
-<button *ngFor="let buttonNumber of getButtonsToShow()">
+<div class="pagination-container">
+    <button [disabled]="currentPage===0" (click)="onPageChange(currentPage-1)"><</button>
+<ng-container *ngFor="let buttonNumber of getButtonsToShow()">
     <button [ngClass]="{'selected': currentPage === buttonNumber}" (click)="onPageChange(buttonNumber)">{{buttonNumber+1}}</button>
-</button>
+</ng-container>
 <button [disabled]="currentPage===lastPage" (click)="onPageChange(currentPage+1)">
     >
-</button>
+</button>   
+</div>

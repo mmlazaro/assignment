@@ -12,9 +12,9 @@
     </thead>
     <tbody>
         <tr *ngFor="let person of attendees">
-            <td>#{{person.id}}</td>
+            <td class="id">#{{person.id}}</td>
             <td>
-                <img [src]="person.avatar" width="20px" height="20px"> 
+                <img class="person-avatar"[src]="person.avatar" width="20px" height="20px"> 
                 {{person.name}}
             </td>
             <td>{{person.dateOfBirth | date: 'd/M/yyyy'}}</td>

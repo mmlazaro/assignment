@@ -1,3 +1,18 @@
 .selected {
     background-color: red;
 }
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    border-radius: 4px;
+    height: 32px;
+    width: 32px;
+    border: none;
+    cursor: pointer;
+    padding: 6px 11.5px;
+   
+}
