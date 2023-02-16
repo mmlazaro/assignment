@@ -1,1 +1,27 @@
-<p>attendees-list works!</p>
+<table>
+    <thead>
+        <tr>
+            <td></td>
+            <td>Name</td>
+            <td>Date of birth</td>
+            <td>City</td>
+            <td>Country</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let person of attendees">
+            <td>#{{person.id}}</td>
+            <td>
+                <img [src]="person.avatar" width="20px" height="20px"> 
+                {{person.name}}
+            </td>
+            <td>{{person.dateOfBirth | date: 'd/M/yyyy'}}</td>
+            <td>{{person.city}}</td>
+            <td>{{person.country}}</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<app-pagination [lastPage]="lastPage-1" (page)="switchPage($event)"></app-pagination>
