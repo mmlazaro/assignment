@@ -1,9 +1,18 @@
 <div class="pagination-container">
-    <button [disabled]="currentPage===0" (click)="onPageChange(currentPage-1)"><</button>
+    <button [disabled]="currentPage===0" (click)="onPageChange(currentPage-1)">
+        <img src="assets/arrow-prev.svg">
+    </button>
 <ng-container *ngFor="let buttonNumber of getButtonsToShow()">
+    <!-- <ng-container *ngIf="currentPage+1<lastPage">
+        <span class="three-dot">...</span>
+    </ng-container> -->
+
     <button [ngClass]="{'selected': currentPage === buttonNumber}" (click)="onPageChange(buttonNumber)">{{buttonNumber+1}}</button>
+    
 </ng-container>
+
 <button [disabled]="currentPage===lastPage" (click)="onPageChange(currentPage+1)">
-    >
+    <img src="assets/arrow-next.svg">
+
 </button>   
 </div>

@@ -1,7 +1,62 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 img {
     border-radius: 20px;
 }
 
+
+
+.list-container {
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px rgba(48, 54, 66, 0.11), 0px 2px 2px rgba(48, 54, 66, 0.1);
+    border: 1px solid #E3E6EF;
+    padding: 24px;
+}
+
+table {
+    border-collapse: collapse;
+
+    // td {
+    //     padding: 0;
+    //     border-spacing: 0;
+
+    // }
+}
+
+.header-row {
+    background-color: #F1F4F8;
+    height: 44px;
+}
+
+td {
+    padding: 12px;
+}
+
+tr:hover {
+    background-color: #F1F4F8;
+    cursor: pointer;
+}
+
+.number-badge {
+    display: block;
+    border: 1px solid #E3E6EF;
+    padding: 7px 9px;
+    border-radius: 7px;
+}
+
+.remove-btn {
+    all: unset;
+}
 
 @media only screen and (max-width: 576px) {
     thead {

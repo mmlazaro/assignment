@@ -1,7 +1,8 @@
-<h3>Assignees (<ng-container *ngIf="count$">{{count$ | async}}</ng-container>)</h3>
+<div class="list-container">
+    <h3>Attendees (<ng-container *ngIf="count$">{{count$ | async}}</ng-container>)</h3>
 <table>
     <thead>
-        <tr>
+        <tr class="header-row">
             <td></td>
             <td>Name</td>
             <td>Date of birth</td>
@@ -12,7 +13,9 @@
     </thead>
     <tbody>
         <tr *ngFor="let person of attendees">
-            <td class="id">#{{person.id}}</td>
+            <td class="id">
+                <span class="number-badge">#{{person.id}}</span>
+            </td>
             <td>
                 <img class="person-avatar"[src]="person.avatar" width="20px" height="20px"> 
                 {{person.name}}
@@ -21,10 +24,11 @@
             <td>{{person.city}}</td>
             <td>{{person.country}}</td>
             <td>
-                <button (click)="removeAttendee(person.id)"><img src="assets/bin.png"></button>
+                <button (click)="removeAttendee(person.id)" class="remove-btn"><img src="assets/bin.svg"></button>
             </td>
         </tr>
     </tbody>
 </table>
 
 <app-pagination [lastPage]="lastPage-1" (page)="switchPage($event)"></app-pagination>
+</div>
