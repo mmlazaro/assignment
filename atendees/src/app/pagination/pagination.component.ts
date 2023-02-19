@@ -18,7 +18,7 @@ export class PaginationComponent {
     this.currentPage = page;
   }
 
-  getButtonsToShow() {
+  getPageNumbersToShow() {
     let buttonsToShow = [1, this.currentPage - 1, this.currentPage, this.currentPage + 1,  this.lastPage].filter(page => {
       return page >= 0 && page <= this.lastPage; 
     });
