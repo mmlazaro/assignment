@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { AttendeesListComponent } from './attendees-list/attendees-list.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { FormsModule } from '@angular/forms';
+import { SortDirective } from './sort.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     AttendeesListComponent,
-    PaginationComponent
+    PaginationComponent,
+    SortDirective
   ],
   imports: [
     BrowserModule,

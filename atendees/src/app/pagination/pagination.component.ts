@@ -13,7 +13,6 @@ export class PaginationComponent {
 
 
   onPageChange(page: number) {
-    console.log(page);
     this.page.emit(page);
     this.currentPage = page;
   }

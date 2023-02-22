@@ -4,10 +4,10 @@
     <thead>
         <tr class="header-row">
             <td></td>
-            <td>Name</td>
-            <td>Date of birth</td>
-            <td>City</td>
-            <td>Country</td>
+            <td appSort (newSortOrder)="sortColumn('name', $event)">Name</td>
+            <td appSort (newSortOrder)="sortColumn('dateOfBirth', $event)">Date of birth</td>
+            <td appSort (newSortOrder)="sortColumn('city', $event)">City</td>
+            <td appSort (newSortOrder)="sortColumn('country', $event)">Country</td>
             <td></td>
         </tr>
     </thead>

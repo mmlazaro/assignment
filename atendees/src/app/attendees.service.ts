@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Attendee } from './attendee.model';
 import { BehaviorSubject, map } from 'rxjs';
+import { SortOrder } from './sort.type';
 
 
 @Injectable({
@@ -45,6 +46,17 @@ export class AttendeesService {
         attendee = updatedAttendee;
       }
       return attendee;
+    });
+    this.attendees$.next(this.attendees);
+  }
+
+  sortAttendees(column: keyof Attendee, sortOrder: SortOrder) {
+    this.attendees = this.attendees.sort((attendee1, attendee2)=> {
+      if (attendee1[column] < attendee2[column]) {
+        return sortOrder === 'ASC' ? -1 : 1;
+      } else {
+        return sortOrder === 'ASC' ? 1 : -1;
+      }
     });
     this.attendees$.next(this.attendees);
   }

@@ -9,13 +9,26 @@ img.person-avatar {
     border-radius: 20px;
 }
 
+.sort-asc::after, .sort-desc::after  {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    height: 20px;
+    width: 20px;
+    background-image: url('/assets/arrow-up.svg');
+    background-repeat: no-repeat;
+    top: 50%;
+    transform: translate(0, -50%);
+}
 
+.sort-desc::after {
+    transform: rotate(180deg);
+    top: calc(50% - 15px);
+    right: 10px;
+}
 
 .list-container {
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
     background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0px 0px 4px rgba(48, 54, 66, 0.11), 0px 2px 2px rgba(48, 54, 66, 0.1);
@@ -25,12 +38,6 @@ img.person-avatar {
 
 table {
     border-collapse: collapse;
-
-    // td {
-    //     padding: 0;
-    //     border-spacing: 0;
-
-    // }
 }
 
 .header-row {
@@ -40,6 +47,7 @@ table {
 
 td {
     padding: 12px;
+    position: relative;
 }
 
 tr:hover {

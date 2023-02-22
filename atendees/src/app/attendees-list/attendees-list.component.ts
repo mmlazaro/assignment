@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Attendee } from '../attendee.model';
 import { AttendeesService } from '../attendees.service';
+import { SortOrder } from '../sort.type';
 
 @Component({
   selector: 'app-attendees-list',
@@ -55,19 +56,20 @@ export class AttendeesListComponent implements OnInit, OnDestroy {
   }
   
   enterEdit(person: Attendee) {
-    //this.editedAttendeeId = id;
     this.isEditMode = true;
     this.editedPerson = person;
   }
 
   cancelEdit() {
-    //this.editedPerson = null;
     this.isEditMode = false;
   }
 
   saveEdit(person: Attendee) {
-    //this.editedAttendeeId = id;
     this.isEditMode = false;
     this.attendeesService.updateAttendee(person);
+  }
+
+  sortColumn(column: keyof Attendee, sortOrder:SortOrder) {
+    this.attendeesService.sortAttendees(column, sortOrder);
   }
 }
