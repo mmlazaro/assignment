@@ -17,7 +17,6 @@ export class AttendeesService {
   constructor(private httpClient: HttpClient) { }
 
   getAttendees() {
-
     return this.httpClient.get<Attendee[]>('assets/attendees.json');
   }
 
@@ -38,6 +37,16 @@ export class AttendeesService {
           }
         })
       )
+  }
+
+  updateAttendee(updatedAttendee: Attendee) {
+    this.attendees = this.attendees.map(attendee => {
+      if (attendee.id === updatedAttendee.id) {
+        attendee = updatedAttendee;
+      }
+      return attendee;
+    });
+    this.attendees$.next(this.attendees);
   }
 
   removeAttendee(id: string) {

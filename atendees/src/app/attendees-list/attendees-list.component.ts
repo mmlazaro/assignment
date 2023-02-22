@@ -15,7 +15,11 @@ export class AttendeesListComponent implements OnInit, OnDestroy {
   lastPage: number = 1;
   attendees: Attendee[] = [];
   count$!: Observable<number>;
+  isEditMode = false;
+  editedPerson!: Attendee;
+
   private destroyed$: Subject<boolean> = new Subject();
+  
 
   constructor(private attendeesService: AttendeesService) {}
 
@@ -48,5 +52,22 @@ export class AttendeesListComponent implements OnInit, OnDestroy {
   removeAttendee(id: string) {
     this.attendeesService.removeAttendee(id);
     this.loadPage();
+  }
+  
+  enterEdit(person: Attendee) {
+    //this.editedAttendeeId = id;
+    this.isEditMode = true;
+    this.editedPerson = person;
+  }
+
+  cancelEdit() {
+    //this.editedPerson = null;
+    this.isEditMode = false;
+  }
+
+  saveEdit(person: Attendee) {
+    //this.editedAttendeeId = id;
+    this.isEditMode = false;
+    this.attendeesService.updateAttendee(person);
   }
 }

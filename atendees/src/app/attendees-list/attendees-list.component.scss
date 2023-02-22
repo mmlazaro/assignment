@@ -5,7 +5,7 @@
 }
 
 
-img {
+img.person-avatar {
     border-radius: 20px;
 }
 
@@ -54,7 +54,7 @@ tr:hover {
     border-radius: 7px;
 }
 
-.remove-btn {
+.remove-btn, .edit-btn {
     all: unset;
 }
 

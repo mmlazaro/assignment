@@ -13,19 +13,45 @@
     </thead>
     <tbody>
         <tr *ngFor="let person of attendees">
+           <ng-container [ngTemplateOutlet]="(!isEditMode || person !== editedPerson) ? viewTmp : editTmpl"
+            [ngTemplateOutletContext]="{ person }">
+           </ng-container>
+
+           <ng-template let-person="person" #viewTmp>
+                <td class="id">
+                    <span class="number-badge">#{{person.id}}</span>
+                </td>
+                <td>
+                    <img class="person-avatar"[src]="person.avatar" width="20px" height="20px"> 
+                    {{person.name}}
+                </td>
+                <td>{{person.dateOfBirth | date: 'd/M/yyyy'}}</td>
+                <td>{{person.city}}</td>
+                <td>{{person.country}}</td>
+                <td>
+                    <button (click)="enterEdit(person)" class="edit-btn" ><img src="assets/pencil.svg"></button>
+                    <button (click)="removeAttendee(person.id)" class="remove-btn"><img src="assets/bin.svg"></button>
+                </td>
+           </ng-template>
+
+           <ng-template #editTmpl let-person="person">
             <td class="id">
                 <span class="number-badge">#{{person.id}}</span>
             </td>
             <td>
                 <img class="person-avatar"[src]="person.avatar" width="20px" height="20px"> 
-                {{person.name}}
+                <input input [(ngModel)]="editedPerson.name">
             </td>
-            <td>{{person.dateOfBirth | date: 'd/M/yyyy'}}</td>
-            <td>{{person.city}}</td>
-            <td>{{person.country}}</td>
+            <td><input [(ngModel)]="editedPerson.dateOfBirth"></td>
+            <td><input [(ngModel)]="editedPerson.city"></td>
+            <td><input [(ngModel)]="editedPerson.country"></td>
             <td>
-                <button (click)="removeAttendee(person.id)" class="remove-btn"><img src="assets/bin.svg"></button>
+                <button (click)="saveEdit(person)" class="edit-btn"><img src="assets/tick.svg"></button>
+                <button (click)="cancelEdit()" class="remove-btn"><img src="assets/x.svg"></button>
             </td>
+           </ng-template>
+
+           
         </tr>
     </tbody>
 </table>
