@@ -13,7 +13,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let person of attendees">
-           <ng-container [ngTemplateOutlet]="(!isEditMode || person !== editedPerson) ? viewTmp : editTmpl"
+           <ng-container [ngTemplateOutlet]="(!isEditMode || person.id !== editedPerson.id) ? viewTmp : editTmpl"
             [ngTemplateOutletContext]="{ person }">
            </ng-container>
 
@@ -42,11 +42,12 @@
                 <img class="person-avatar"[src]="person.avatar" width="20px" height="20px"> 
                 <input input [(ngModel)]="editedPerson.name">
             </td>
-            <td><input [(ngModel)]="editedPerson.dateOfBirth"></td>
+            <!-- [(ngModel)]="editedPerson.dateOfBirth"  it does not work correctly initially-->
+            <td><input [(ngModel)]="editedPerson.dateOfBirth" mask="d0/M0/0000" type="text"></td>
             <td><input [(ngModel)]="editedPerson.city"></td>
             <td><input [(ngModel)]="editedPerson.country"></td>
             <td>
-                <button (click)="saveEdit(person)" class="edit-btn"><img src="assets/tick.svg"></button>
+                <button (click)="saveEdit()" class="edit-btn"><img src="assets/tick.svg"></button>
                 <button (click)="cancelEdit()" class="remove-btn"><img src="assets/x.svg"></button>
             </td>
            </ng-template>

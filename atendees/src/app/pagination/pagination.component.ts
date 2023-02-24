@@ -11,7 +11,6 @@ export class PaginationComponent {
 
   currentPage = 0;
 
-
   onPageChange(page: number) {
     this.page.emit(page);
     this.currentPage = page;

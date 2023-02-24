@@ -7,6 +7,9 @@ import { AttendeesListComponent } from './attendees-list/attendees-list.componen
 import { PaginationComponent } from './pagination/pagination.component';
 import { FormsModule } from '@angular/forms';
 import { SortDirective } from './sort.directive';
+import { NgxMaskDirective, NgxMaskPipe, provideEnvironmentNgxMask } from 'ngx-mask';
+import { DatePipe } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -18,9 +21,15 @@ import { SortDirective } from './sort.directive';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxMaskDirective, 
+    NgxMaskPipe
+    
   ],
-  providers: [],
+  providers: [
+    provideEnvironmentNgxMask(),
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Attendee } from '../attendee.model';
@@ -7,7 +8,7 @@ import { SortOrder } from '../sort.type';
 @Component({
   selector: 'app-attendees-list',
   templateUrl: './attendees-list.component.html',
-  styleUrls: ['./attendees-list.component.scss']
+  styleUrls: ['./attendees-list.component.scss'],
 })
 export class AttendeesListComponent implements OnInit, OnDestroy {
 
@@ -21,12 +22,11 @@ export class AttendeesListComponent implements OnInit, OnDestroy {
 
   private destroyed$: Subject<boolean> = new Subject();
   
-
-  constructor(private attendeesService: AttendeesService) {}
+  constructor(private attendeesService: AttendeesService, private datePipe: DatePipe) {}
 
   ngOnDestroy(): void {
      this.destroyed$.next(true);
-      this.destroyed$.complete();
+     this.destroyed$.complete();
   }
 
   ngOnInit(): void {
@@ -46,7 +46,6 @@ export class AttendeesListComponent implements OnInit, OnDestroy {
   loadPage() {
     this.attendeesService.getAttendeesPage(this.currentPage).subscribe(list => {
       this.attendees = list;
-      console.log(this.attendees)
     })
   }
 
@@ -57,19 +56,24 @@ export class AttendeesListComponent implements OnInit, OnDestroy {
   
   enterEdit(person: Attendee) {
     this.isEditMode = true;
-    this.editedPerson = person;
+    this.editedPerson = {
+      ...person,
+      dateOfBirth: this.datePipe.transform(person.dateOfBirth, 'd/M/yyyy') || person.dateOfBirth
+    };
   }
 
   cancelEdit() {
     this.isEditMode = false;
   }
 
-  saveEdit(person: Attendee) {
+  saveEdit() {
     this.isEditMode = false;
-    this.attendeesService.updateAttendee(person);
+    this.attendeesService.updateAttendee(this.editedPerson);
+    console.log(this.editedPerson)
+    this.loadPage();
   }
 
-  sortColumn(column: keyof Attendee, sortOrder:SortOrder) {
+  sortColumn(column: keyof Attendee, sortOrder: SortOrder) {
     this.attendeesService.sortAttendees(column, sortOrder);
   }
 }
