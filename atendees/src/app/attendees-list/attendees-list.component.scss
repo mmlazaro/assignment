@@ -4,7 +4,6 @@
     justify-content: center;
 }
 
-
 img.person-avatar {
     border-radius: 20px;
 }
@@ -50,6 +49,10 @@ td {
     position: relative;
 }
 
+tr {
+    border-bottom: 1px #E3E6EF solid;
+}
+
 tr:hover {
     background-color: #F1F4F8;
     cursor: pointer;
@@ -62,20 +65,90 @@ tr:hover {
     border-radius: 7px;
 }
 
-.remove-btn, .edit-btn {
+.remove-btn, .edit-btn, .ellipsis-btn {
     all: unset;
+    margin: 4px;
+}
+
+.ellipsis-btn {
+    display: none;
 }
 
 @media only screen and (max-width: 576px) {
+    .list-container {
+        padding: 0;
+    }
+
+    h3 {
+        padding: 12px 16px;
+        font-size: 24px;
+    }
+
+    table {
+        border: 1px #E3E6EF solid;
+
+    }
+
     thead {
         display: none;
     }
 
-    .id {
+    .id-cell, .edit-btn, .remove-btn {
         display: none;
+    }
+
+    .ellipsis-btn {
+        display: inline;
     }
 
     .person-avatar {
         display: none;
     }
+
+    tr {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px 16px;
+    }
+
+    .person-cell {
+        order: 1;
+        width: 60%;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+
+    }
+
+    .date-cell {
+        order: 2;
+        width: 23%;
+        font-size: 12px;
+        display: flex;
+        align-content: center;
+    }
+    .button-cell {
+        order: 3;
+        width: 17%;
+        text-align: end;
+    }
+
+    .city-cell {
+        order: 4;
+        width: 30%;
+        font-size: 12px;
+        line-height: 16px;
+        width: 15%;
+        color:  #555D71;
+    }
+    
+    .country-cell {
+        order: 5;
+        width: 30%;
+        font-size: 12px;
+        line-height: 16px;
+        width: 35%; 
+        color:  #555D71;
+    }
+
 }

@@ -16,7 +16,7 @@ import { DatePipe } from '@angular/common';
     AppComponent,
     AttendeesListComponent,
     PaginationComponent,
-    SortDirective
+    SortDirective  
   ],
   imports: [
     BrowserModule,

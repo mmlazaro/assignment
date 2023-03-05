@@ -18,19 +18,20 @@
            </ng-container>
 
            <ng-template let-person="person" #viewTmp>
-                <td class="id">
+                <td class="id-cell">
                     <span class="number-badge">#{{person.id}}</span>
                 </td>
-                <td>
+                <td class="person-cell">
                     <img class="person-avatar"[src]="person.avatar" width="20px" height="20px"> 
                     {{person.name}}
                 </td>
-                <td>{{person.dateOfBirth | date: 'd/M/yyyy'}}</td>
-                <td>{{person.city}}</td>
-                <td>{{person.country}}</td>
-                <td>
+                <td class="date-cell">{{person.dateOfBirth | date: 'd/M/yyyy'}}</td>
+                <td class="city-cell">{{person.city}}</td>
+                <td class="country-cell">{{person.country}}</td>
+                <td class="button-cell">
                     <button (click)="enterEdit(person)" class="edit-btn" ><img src="assets/pencil.svg"></button>
                     <button (click)="removeAttendee(person.id)" class="remove-btn"><img src="assets/bin.svg"></button>
+                    <button class="ellipsis-btn"><img src="assets/ellipsis.svg"></button>
                 </td>
            </ng-template>
 

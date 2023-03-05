@@ -3,3 +3,7 @@ body {
     background-color:  #F5F5F5;
     font-family: 'Roboto';
 }
+
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
